@@ -1,4 +1,4 @@
-name: "42crunch-audit-workflow"
+name: "API Security"
 
 # follow standard Code Scanning triggers
 on:
@@ -16,10 +16,8 @@ env:
 
 jobs:
   run_42c_audit:
-    environment: QA
     permissions:
       contents: read # for actions/checkout to fetch code
-      security-events: write # for results upload to Github Code Scanning
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
@@ -27,14 +25,15 @@ jobs:
       - name: 42crunch-static-api-testing
         uses: 42Crunch/api-security-audit-action@v3
         with:
-          api-token: ${{ secrets.API_TOKEN }}
+          api-token: ${{ secrets.CRUNCH42_API_TOKEN }}
           platform-url: ${{ env.PLATFORM_URL}}
-          default-collection-name: GitHub-MyRepo-${{ github.ref_name }}
+          default-collection-name: API-Security-POC
           # Upload results to Github code scanning
           upload-to-code-scanning: false
           log-level: info
           json-report: audit-action-report-${{ github.run_id }}
           sarif-report: 42Crunch_AuditReport_${{ github.run_id }}.SARIF
+
       - name: save-audit-report
         if: always()        
         uses: actions/upload-artifact@v3
