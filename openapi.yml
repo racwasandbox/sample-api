@@ -1,0 +1,97 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI Document on Azure Functions
+  description: This is the OpenAPI Document on Azure Functions
+  version: 1.0.0
+servers:
+  - url: http://localhost:7071/api
+paths:
+  /health:
+    get:
+      tags:
+        - health
+      summary: health
+      description: Gets the health of the api
+      operationId: health
+      responses:
+        '200':
+          description: This returns the response
+          content:
+            text/json:
+              schema:
+                type: string
+          x-ms-summary: The response
+      security:
+        - function_key: [ ]
+  '/sample/{id}':
+    get:
+      tags:
+        - get
+      summary: get
+      description: get
+      operationId: get
+      responses:
+        '200':
+          description: This returns the response
+          content:
+            text/plain:
+              schema:
+                type: string
+          x-ms-summary: The response
+      security:
+        - function_key: [ ]
+    patch:
+      tags:
+        - patch
+      summary: patch
+      description: patch
+      operationId: patch
+      responses:
+        '200':
+          description: This returns the response
+          content:
+            text/plain:
+              schema:
+                type: string
+          x-ms-summary: The response
+      security:
+        - function_key: [ ]
+    delete:
+      tags:
+        - delete
+      summary: delete
+      description: delete
+      operationId: delete
+      responses:
+        '200':
+          description: This returns the response
+          content:
+            text/plain:
+              schema:
+                type: string
+          x-ms-summary: The response
+      security:
+        - function_key: [ ]
+  /sample:
+    post:
+      tags:
+        - post
+      summary: post
+      description: post
+      operationId: post
+      responses:
+        '200':
+          description: This returns the response
+          content:
+            text/plain:
+              schema:
+                type: string
+          x-ms-summary: The response
+      security:
+        - function_key: [ ]
+components:
+  securitySchemes:
+    function_key:
+      type: apiKey
+      name: code
+      in: query
