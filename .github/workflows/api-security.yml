@@ -59,6 +59,6 @@ jobs:
           api-credential: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
           target-url: ${{ env.TARGET_URL }}
           log-level: debug
-          sarif-report: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
-          scan-report: 42Crunch_RawReport_${{ github.run_id }}.json
-          export-as-pdf: 42Crunch_ScanReport_${{ github.run_id }}.pdf
+          # sarif-report: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
+          # scan-report: 42Crunch_RawReport_${{ github.run_id }}.json
+          # export-as-pdf: 42Crunch_ScanReport_${{ github.run_id }}.pdf
