@@ -13,6 +13,7 @@ on:
 
 env:
   PLATFORM_URL: https://platform.42crunch.com
+  TARGET_URL: "https://apim-api-security.azure-api.net/func-api-security"
 
 jobs:
   run_42c_audit:
@@ -43,13 +44,19 @@ jobs:
           if-no-files-found: error
 
   run_42c_scan:
-    uses: 42Crunch/api-security-scan-action-freemium@v1
-    with:
-      upload-to-code-scanning: false
-      api-definition: openapi.yml
-      api-credential: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
-      # target-url: ${{ env.TARGET_URL }}
-      log-level: info
-      sarif-report: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
-      scan-report: 42Crunch_RawReport_${{ github.run_id }}.json
-      export-as-pdf: 42Crunch_ScanReport_${{ github.run_id }}.pdf
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: 42crunch-static-api-testing
+        uses: 42Crunch/api-security-scan-action-freemium@v1
+        with:
+          upload-to-code-scanning: false
+          api-definition: openapi.yml
+          api-credential: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
+          target-url: ${{ env.TARGET_URL }}
+          log-level: info
+          sarif-report: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
+          scan-report: 42Crunch_RawReport_${{ github.run_id }}.json
+          export-as-pdf: 42Crunch_ScanReport_${{ github.run_id }}.pdf
