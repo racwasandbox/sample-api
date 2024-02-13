@@ -14,7 +14,7 @@ paths:
       description: Gets the health of the api
       operationId: health
       responses:
-        '200':
+        "200":
           description: This returns the response
           content:
             text/json:
@@ -22,16 +22,22 @@ paths:
                 type: string
           x-ms-summary: The response
       security:
-        - function_key: [ ]
-  '/sample/{id}':
+        - function_key: []
+  "/sample/{id}":
     get:
       tags:
         - get
       summary: get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       description: get
       operationId: get
       responses:
-        '200':
+        "200":
           description: This returns the response
           content:
             text/plain:
@@ -39,15 +45,21 @@ paths:
                 type: string
           x-ms-summary: The response
       security:
-        - function_key: [ ]
+        - function_key: []
     patch:
       tags:
         - patch
       summary: patch
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       description: patch
       operationId: patch
       responses:
-        '200':
+        "200":
           description: This returns the response
           content:
             text/plain:
@@ -55,15 +67,21 @@ paths:
                 type: string
           x-ms-summary: The response
       security:
-        - function_key: [ ]
+        - function_key: []
     delete:
       tags:
         - delete
       summary: delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       description: delete
       operationId: delete
       responses:
-        '200':
+        "200":
           description: This returns the response
           content:
             text/plain:
@@ -71,7 +89,7 @@ paths:
                 type: string
           x-ms-summary: The response
       security:
-        - function_key: [ ]
+        - function_key: []
   /sample:
     post:
       tags:
@@ -80,7 +98,7 @@ paths:
       description: post
       operationId: post
       responses:
-        '200':
+        "200":
           description: This returns the response
           content:
             text/plain:
@@ -88,7 +106,7 @@ paths:
                 type: string
           x-ms-summary: The response
       security:
-        - function_key: [ ]
+        - function_key: []
 components:
   securitySchemes:
     function_key:
