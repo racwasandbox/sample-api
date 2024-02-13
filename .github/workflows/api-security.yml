@@ -51,9 +51,6 @@ jobs:
         SCAN_TOKEN: ${{ secrets.CRUNCH42_SCAN_TOKEN }}
         SCAN42C_SECURITY_APIKEYAUTH: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
     permissions:
-      contents: read # for actions/checkout to fetch code
-    steps:
-      - name: Docker run
-        run: docker run
+      contents: read 
 
       
