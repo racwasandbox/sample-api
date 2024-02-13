@@ -45,6 +45,8 @@ jobs:
 
   run_42c_scan:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # for actions/checkout to fetch code
     steps:
       - name: checkout repo
         uses: actions/checkout@v3
