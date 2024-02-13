@@ -41,3 +41,15 @@ jobs:
           name: auditaction-report-${{ github.run_id }}
           path: audit-action-report-${{ github.run_id }}.json
           if-no-files-found: error
+
+  run_42c_scan:
+    uses: 42Crunch/api-security-scan-action-freemium@v1
+    with:
+      upload-to-code-scanning: false
+      api-definition: openapi.yml
+      api-credential: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
+      # target-url: ${{ env.TARGET_URL }}
+      log-level: info
+      sarif-report: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
+      scan-report: 42Crunch_RawReport_${{ github.run_id }}.json
+      export-as-pdf: 42Crunch_ScanReport_${{ github.run_id }}.pdf
