@@ -45,20 +45,15 @@ jobs:
 
   run_42c_scan:
     runs-on: ubuntu-latest
+    container: 
+      image: 42crunch/scand-agent
+      env:
+        SCAN_TOKEN: ${{ secrets.CRUNCH42_SCAN_TOKEN }}
+        SCAN42C_SECURITY_APIKEYAUTH: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
     permissions:
       contents: read # for actions/checkout to fetch code
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v3
+      - name: Docker run
+        run: docker run
 
-      - name: 42crunch-static-api-testing
-        uses: 42Crunch/api-security-scan-action-freemium@v1
-        with:
-          upload-to-code-scanning: false
-          api-definition: openapi.yml
-          api-credential: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
-          target-url: ${{ env.TARGET_URL }}
-          log-level: debug
-          # sarif-report: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
-          # scan-report: 42Crunch_RawReport_${{ github.run_id }}.json
-          # export-as-pdf: 42Crunch_ScanReport_${{ github.run_id }}.pdf
+      
