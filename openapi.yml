@@ -5,6 +5,14 @@ info:
   version: 1.0.0
 servers:
   - url: https://apim-api-security.azure-api.net/func-api-security
+components:
+  securitySchemes:
+    APIKeyAuth:   
+      type: apiKey
+      in: header   
+      name: Ocp-Apim-Subscription-Key 
+security:
+  - APIKeyAuth: []
 paths:
   /health:
     get:
@@ -21,8 +29,6 @@ paths:
               schema:
                 type: string
           x-ms-summary: The response
-      security:
-        - function_key: []
   "/sample/{id}":
     get:
       tags:
@@ -44,8 +50,6 @@ paths:
               schema:
                 type: string
           x-ms-summary: The response
-      security:
-        - function_key: []
     patch:
       tags:
         - patch
@@ -66,8 +70,6 @@ paths:
               schema:
                 type: string
           x-ms-summary: The response
-      security:
-        - function_key: []
     delete:
       tags:
         - delete
@@ -88,8 +90,6 @@ paths:
               schema:
                 type: string
           x-ms-summary: The response
-      security:
-        - function_key: []
   /sample:
     post:
       tags:
@@ -105,11 +105,9 @@ paths:
               schema:
                 type: string
           x-ms-summary: The response
-      security:
-        - function_key: []
-components:
-  securitySchemes:
-    function_key:
-      type: apiKey
-      name: code
-      in: query
+# components:
+#   securitySchemes:
+#     function_key:
+#       type: apiKey
+#       name: code
+#       in: query
