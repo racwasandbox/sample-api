@@ -5,11 +5,8 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: [ "main" ]
   workflow_dispatch:
-#   schedule:
-#     - cron: '19 9 * * 6'
 
 env:
   PLATFORM_URL: https://platform.42crunch.com
@@ -18,7 +15,7 @@ env:
 jobs:
   run_42c_audit:
     permissions:
-      contents: read # for actions/checkout to fetch code
+      contents: read 
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
@@ -50,7 +47,7 @@ jobs:
     steps:
       - name: 42crunch-dynamic-api-testing
         run: |
-          docker pull 42crunch/Sscand-agent:v2
+          docker pull 42crunch/scand-agent:v2
           docker run -e SCAN_TOKEN=${{ secrets.CRUNCH42_SCAN_TOKEN }} -e SCAN42C_SECURITY_APIKEYAUTH=${{ secrets.APIM_SUBSCRIPTION_KEY }} 42crunch/scand-agent:v2
 
 
