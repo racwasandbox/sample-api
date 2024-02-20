@@ -25,8 +25,10 @@ public class SampleApi
     }
 
     [OpenApiOperation(operationId: "health", tags: new[] { "health" }, Summary = "health", Description = "Gets the health of the api")]
-    [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
     [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/json", bodyType: typeof(string), Summary = "The response", Description = "This returns the response")]
+    [OpenApiResponseWithoutBody(HttpStatusCode.NotAcceptable)]
+    [OpenApiResponseWithoutBody(HttpStatusCode.NotFound)]
+    [OpenApiResponseWithoutBody(HttpStatusCode.TooManyRequests)]
     [Function("health")]
     public HttpResponseData Health([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequestData req)
     {
@@ -35,11 +37,15 @@ public class SampleApi
         response.WriteString(JsonSerializer.Serialize(new { StatusCode.OK, Message = "Healthy"}));
 
         return response;
-    }
-
+    }    
+    
     [OpenApiOperation(operationId: "get", tags: new[] { "get" }, Summary = "get", Description = "get")]
-    [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
-    [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(string), Summary = "The response", Description = "This returns the response")]
+    [OpenApiParameter("id", Description = "The id of the item", Required = true)]
+    [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(Item), Summary = "The response", Description = "This returns the response")]
+    [OpenApiResponseWithoutBody(HttpStatusCode.NotAcceptable)]
+    [OpenApiResponseWithoutBody(HttpStatusCode.NotFound)]
+    [OpenApiResponseWithoutBody(HttpStatusCode.TooManyRequests)]
+    
     [Function("SampleGet")]
     public HttpResponseData Get([HttpTrigger(AuthorizationLevel.Function, "get", Route = "sample/{id}")] HttpRequestData req, int id)
     {
@@ -55,8 +61,12 @@ public class SampleApi
 
 
     [OpenApiOperation(operationId: "post", tags: new[] { "post" }, Summary = "post", Description = "post")]
-    [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
+    [OpenApiRequestBody("text/plain", bodyType: typeof(string), Description = "The text to update the item with")]
     [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(string), Summary = "The response", Description = "This returns the response")]
+    [OpenApiResponseWithoutBody(HttpStatusCode.NotAcceptable)]
+    [OpenApiResponseWithoutBody(HttpStatusCode.NotFound)]
+    [OpenApiResponseWithoutBody(HttpStatusCode.TooManyRequests)]
+    
     [Function("SamplePost")]
     public async Task<HttpResponseData> Post([HttpTrigger(AuthorizationLevel.Function, "post", Route = "sample")] HttpRequestData req)
     {
@@ -64,7 +74,7 @@ public class SampleApi
         if (string.IsNullOrEmpty(label))
         {
             throw new ArgumentException("No label provided");
-        };
+        }
 
         _service.Add(label);
 
@@ -76,8 +86,13 @@ public class SampleApi
     }
 
     [OpenApiOperation(operationId: "patch", tags: new[] { "patch" }, Summary = "patch", Description = "patch")]
-    [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
+    [OpenApiParameter("id", Description = "The id of the item", Required = true)]
+    [OpenApiRequestBody("text/plain", bodyType: typeof(string), Description = "The text to update the item with")]
     [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(string), Summary = "The response", Description = "This returns the response")]
+    [OpenApiResponseWithoutBody(HttpStatusCode.NotAcceptable)]
+    [OpenApiResponseWithoutBody(HttpStatusCode.NotFound)]
+    [OpenApiResponseWithoutBody(HttpStatusCode.TooManyRequests)]
+    
     [Function("SamplePatch")]
     public async Task<HttpResponseData> Patch([HttpTrigger(AuthorizationLevel.Function, "patch", Route = "sample/{id}")] HttpRequestData req, int id)
     {
@@ -99,8 +114,12 @@ public class SampleApi
     }
 
     [OpenApiOperation(operationId: "delete", tags: new[] { "delete" }, Summary = "delete", Description = "delete")]
-    [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
+    [OpenApiParameter("id", Description = "The id of the item", Required = true)]
     [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(string), Summary = "The response", Description = "This returns the response")]
+    [OpenApiResponseWithoutBody(HttpStatusCode.NotAcceptable)]
+    [OpenApiResponseWithoutBody(HttpStatusCode.NotFound)]
+    [OpenApiResponseWithoutBody(HttpStatusCode.TooManyRequests)]
+    
     [Function("SampleDelete")]
     public HttpResponseData Delete([HttpTrigger(AuthorizationLevel.Function, "delete", Route = "sample/{id}")] HttpRequestData req, int id)
     {
