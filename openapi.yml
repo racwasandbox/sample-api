@@ -1,18 +1,13 @@
 openapi: 3.0.1
 info:
-  title: OpenAPI Document on Azure Functions
+  title: Sample API - OpenAPI Specification
   description: This is the OpenAPI Document on Azure Functions
   version: 1.0.0
 servers:
   - url: https://apim-api-security.azure-api.net/func-api-security
-components:
-  securitySchemes:
-    APIKeyAuth:   
-      type: apiKey
-      in: header   
-      name: Ocp-Apim-Subscription-Key 
 security:
-  - APIKeyAuth: []
+  - regularSecurity: []
+
 paths:
   /health:
     get:
@@ -22,74 +17,231 @@ paths:
       description: Gets the health of the api
       operationId: health
       responses:
-        "200":
+        '200':
           description: This returns the response
           content:
-            text/json:
+            application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/genericResponse'
           x-ms-summary: The response
-  "/sample/{id}":
+        '401':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '403':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '404':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '406':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '429':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        default:
+          description: unexpected error
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/error"
+  '/sample/{id}':
     get:
       tags:
         - get
       summary: get
+      description: get
+      operationId: get
       parameters:
         - name: id
           in: path
+          description: The id of the item
           required: true
           schema:
-            type: string
-      description: get
-      operationId: get
+            $ref: '#/components/schemas/id'
       responses:
-        "200":
+        '200':
           description: This returns the response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/item'
+          x-ms-summary: The response
+        '401':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '403':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '404':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '406':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '429':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        default:
+          description: unexpected error
           content:
             text/plain:
               schema:
-                type: string
-          x-ms-summary: The response
+                $ref: "#/components/schemas/error"
     patch:
       tags:
         - patch
       summary: patch
+      description: patch
+      operationId: patch
       parameters:
         - name: id
           in: path
+          description: The id of the item
           required: true
           schema:
-            type: string
-      description: patch
-      operationId: patch
+            $ref: '#/components/schemas/id'
+      requestBody:
+        description: The text to update the item with
+        content:
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/message'
       responses:
-        "200":
+        '200':
           description: This returns the response
           content:
             text/plain:
               schema:
-                type: string
-          x-ms-summary: The response
+                $ref: '#/components/schemas/genericResponse'
+        '401':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '403':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '404':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '406':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '415':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '429':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        default:
+          description: unexpected error
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/error"
     delete:
       tags:
         - delete
       summary: delete
+      description: delete
+      operationId: delete
       parameters:
         - name: id
           in: path
+          description: The id of the item
           required: true
           schema:
-            type: string
-      description: delete
-      operationId: delete
+            $ref: '#/components/schemas/id'
       responses:
-        "200":
+        '200':
           description: This returns the response
           content:
             text/plain:
               schema:
-                type: string
-          x-ms-summary: The response
+                $ref: '#/components/schemas/genericResponse'
+        '401':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '403':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '404':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '406':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '429':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        default:
+          description: unexpected error
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/error"
   /sample:
     post:
       tags:
@@ -97,17 +249,108 @@ paths:
       summary: post
       description: post
       operationId: post
+      requestBody:
+        description: The text to update the item with
+        content:
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/message'
       responses:
-        "200":
+        '200':
           description: This returns the response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+          x-ms-summary: The response
+        '401':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '403':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '404':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '406':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '415':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '429':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        default:
+          description: unexpected error
           content:
             text/plain:
               schema:
-                type: string
-          x-ms-summary: The response
-# components:
-#   securitySchemes:
-#     function_key:
-#       type: apiKey
-#       name: code
-#       in: query
+                $ref: "#/components/schemas/error"
+
+components:
+  schemas:
+    id:
+      type: integer
+      format: int32
+      minimum: 0
+      maximum: 2147483647
+
+    message:
+      type: string
+      pattern: "[^A-Za-z0-9]+"
+      maxLength: 100
+
+    error:
+      type: string
+      pattern: "[^A-Za-z0-9]+"
+      maxLength: 100
+
+    item:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        label:
+          type: string
+          pattern: "[^A-Za-z0-9]+"
+          maxLength: 255
+
+    genericResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        statusCode:
+          type: string
+          pattern: "[^A-Za-z0-9]+"
+          maxLength: 255
+        message:
+          type: string
+          maxLength: 255
+          pattern: "[^A-Za-z0-9]+"
+
+  securitySchemes:
+    regularSecurity:
+      type: apiKey
+      name: api_key
+      in: header

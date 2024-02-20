@@ -1,0 +1,307 @@
+{
+  "version": "2.0.0",
+  "runtimeConfiguration": {
+    "environment": "default",
+    "logLevel": "error",
+    "logDestination": "stdout+platform",
+    "logMaxFileSize": 2147483648,
+    "requestHeaderNameRequestId": "x-scan-request-id",
+    "requestHeaderNameScenarioId": "x-scan-scenario-id",
+    "requestFlowrate": 100,
+    "requestTimeout": 30,
+    "requestTlsInsecureSkipVerify": true,
+    "responseFollowRedirection": false,
+    "responseMaxBodySizeScan": 10485760,
+    "happyPathOnly": false,
+    "maxScanDuration": 3600,
+    "memoryLimit": 2147483648,
+    "memoryTimeSpan": 10,
+    "reportMaxHttpResponseSizeHappyPath": 8092,
+    "reportMaxBodySizeHappyPath": 8092,
+    "reportMaxHttpResponseSizeTest": 8092,
+    "reportMaxBodySizeTest": 8092,
+    "reportIssuesOnly": false,
+    "reportMaxIssues": 1000,
+    "reportMaxSize": 20971520,
+    "reportGenerateCurlCommand": true
+  },
+  "customizations": {
+    "happyPaths": {
+      "retry": 1,
+      "responsePolicy": {
+        "httpStatusExpected": true,
+        "mustBeConformant": true
+      },
+      "httpStatusExpected": [
+        "2XX",
+        "400",
+        "404"
+      ]
+    },
+    "tests": {
+      "responsePolicy": {
+        "httpStatusExpected": true,
+        "mustBeConformant": true
+      }
+    }
+  },
+  "authenticationDetails": [
+    {
+      "APIKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Ocp-Apim-Subscription-Key",
+        "default": "APIKeyAuth",
+        "credentials": {
+          "APIKeyAuth": {
+            "description": "APIKeyAuth security",
+            "credential": "{{APIKeyAuth}}"
+          }
+        }
+      }
+    }
+  ],
+  "operations": {
+    "delete": {
+      "operationId": "delete",
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "fuzzing": true,
+          "requests": [
+            {
+              "$ref": "#/operations/delete/request",
+              "fuzzing": true
+            }
+          ]
+        }
+      ],
+      "request": {
+        "operationId": "delete",
+        "request": {
+          "type": "42c",
+          "details": {
+            "url": "{{host}}/sample/{id}",
+            "method": "DELETE",
+            "paths": [
+              {
+                "key": "id",
+                "value": "mdhvkvtraxeggchjaqkxoloxcwwqgmzs"
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "404": {
+            "expectations": {
+              "httpStatus": 404
+            }
+          }
+        }
+      }
+    },
+    "get": {
+      "operationId": "get",
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "fuzzing": true,
+          "requests": [
+            {
+              "$ref": "#/operations/get/request",
+              "fuzzing": true
+            }
+          ]
+        }
+      ],
+      "request": {
+        "operationId": "get",
+        "request": {
+          "type": "42c",
+          "details": {
+            "url": "{{host}}/sample/{id}",
+            "method": "GET",
+            "paths": [
+              {
+                "key": "id",
+                "value": "xjmhuocolkcbvmsktpexcvrnatverlhx"
+              }
+            ]
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "404": {
+            "expectations": {
+              "httpStatus": 404
+            }
+          }
+        }
+      }
+    },
+    "health": {
+      "operationId": "health",
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "fuzzing": true,
+          "requests": [
+            {
+              "$ref": "#/operations/health/request",
+              "fuzzing": true
+            }
+          ]
+        }
+      ],
+      "request": {
+        "operationId": "health",
+        "request": {
+          "type": "42c",
+          "details": {
+            "url": "{{host}}/health",
+            "method": "GET"
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          }
+        }
+      }
+    },
+    "patch": {
+      "operationId": "patch",
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "fuzzing": true,
+          "requests": [
+            {
+              "$ref": "#/operations/patch/request",
+              "fuzzing": true
+            }
+          ]
+        }
+      ],
+      "request": {
+        "operationId": "patch",
+        "request": {
+          "type": "42c",
+          "details": {
+            "url": "{{host}}/sample/{id}",
+            "method": "PATCH",
+            "paths": [
+              {
+                "key": "id",
+                "value": "t"
+              }
+            ],
+            "headers": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              }
+            ],
+            "requestBody": {
+              "mode": "raw",
+              "raw": "ovwsbrwwcnzvpadvgpulotezwdrodzex"
+            }
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "404": {
+            "expectations": {
+              "httpStatus": 404
+            }
+          }
+        }
+      }
+    },
+    "post": {
+      "operationId": "post",
+      "scenarios": [
+        {
+          "key": "happy.path",
+          "fuzzing": true,
+          "requests": [
+            {
+              "$ref": "#/operations/post/request",
+              "fuzzing": true
+            }
+          ]
+        }
+      ],
+      "request": {
+        "operationId": "post",
+        "request": {
+          "type": "42c",
+          "details": {
+            "url": "{{host}}/sample",
+            "method": "POST",
+            "headers": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              }
+            ],
+            "requestBody": {
+              "mode": "raw",
+              "raw": "tzgvizyqtmvwemgrubygwtcfzoxcuncb"
+            }
+          }
+        },
+        "defaultResponse": "200",
+        "responses": {
+          "200": {
+            "expectations": {
+              "httpStatus": 200
+            }
+          },
+          "404": {
+            "expectations": {
+              "httpStatus": 404
+            }
+          }
+        }
+      }
+    }
+  },
+  "environments": {
+    "default": {
+      "variables": {
+        "APIKeyAuth": {
+          "from": "environment",
+          "name": "SCAN42C_SECURITY_APIKEYAUTH",
+          "required": false,
+          "default": "secret_to_be_overridden"
+        },
+        "host": {
+          "from": "environment",
+          "name": "SCAN42C_HOST",
+          "required": false,
+          "default": "https://apim-api-security.azure-api.net/func-api-security"
+        }
+      }
+    }
+  }
+}
