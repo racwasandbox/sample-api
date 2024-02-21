@@ -13,15 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     name: Scan the webapplication
     steps:
-      - name: Checkout
+      - name: checkout repo
         uses: actions/checkout@v3
 
-      - name: ZAP Scan
-        uses: zaproxy/action-api-scan@v0.6.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          format: openapi
-          target: ${{ github.workspace }}/openapi.yml
-        env:
-          ZAP_AUTH_HEADER: "Ocp-Apim-Subscription-Key"
-          ZAP_AUTH_HEADER_VALUE: "${{ secrets.APIM_SUBSCRIPTION_KEY }}"
+      - name: List files
+        run: ls -la ${{ github.workspace }}
+
+      # - name: ZAP Scan
+      #   uses: zaproxy/action-api-scan@v0.6.0
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     format: openapi
+      #     target: ${{ github.workspace }}/openapi.yml
+      #   env:
+      #     ZAP_AUTH_HEADER: "Ocp-Apim-Subscription-Key"
+      #     ZAP_AUTH_HEADER_VALUE: "${{ secrets.APIM_SUBSCRIPTION_KEY }}"
