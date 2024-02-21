@@ -32,8 +32,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           format: openapi
-          target: "openapi-owasp.json"
-          cmd_options: "-n ${{ github.path }}/openapi-owasp.json"
+          target: "openapi.yml"
         env:
           ZAP_AUTH_HEADER: "Ocp-Apim-Subscription-Key"
           ZAP_AUTH_HEADER_VALUE: "${{ secrets.APIM_SUBSCRIPTION_KEY }}"
