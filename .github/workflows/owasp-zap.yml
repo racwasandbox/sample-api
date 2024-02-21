@@ -11,28 +11,26 @@ on:
 jobs:
   zap_scan:
     runs-on: ubuntu-latest
-    name: Scan the webapplication
+    name: ZAP scans
     steps:
       - name: checkout repo
         uses: actions/checkout@v3
 
-      - name: List files
-        run: ls -la ${{ github.workspace }}
-
-      - name: Display file contents
-        run: cat ${{ github.workspace }}/openapi-owasp.json
-      
-      # - name: Start HTTP server
-      #   run: |
-      #     python -m http.server &
-      #     sleep 2 # give the server some time to start
-
-      - name: ZAP Scan
+      - name: ZAP API Scan 
         uses: zaproxy/action-api-scan@v0.6.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           format: openapi
           target: "openapi.yml"
+        env:
+          ZAP_AUTH_HEADER: "Ocp-Apim-Subscription-Key"
+          ZAP_AUTH_HEADER_VALUE: "${{ secrets.APIM_SUBSCRIPTION_KEY }}"
+      
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.11.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target: 'openapi.yml'
         env:
           ZAP_AUTH_HEADER: "Ocp-Apim-Subscription-Key"
           ZAP_AUTH_HEADER_VALUE: "${{ secrets.APIM_SUBSCRIPTION_KEY }}"
