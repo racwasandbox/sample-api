@@ -30,7 +30,7 @@ jobs:
         uses: zaproxy/action-baseline@v0.11.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          target: 'openapi.yml'
+          target: 'https://apim-api-security.azure-api.net/func-api-security'
         env:
           ZAP_AUTH_HEADER: "Ocp-Apim-Subscription-Key"
           ZAP_AUTH_HEADER_VALUE: "${{ secrets.APIM_SUBSCRIPTION_KEY }}"
