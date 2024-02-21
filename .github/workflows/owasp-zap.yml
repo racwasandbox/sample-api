@@ -22,17 +22,17 @@ jobs:
       - name: Display file contents
         run: cat ${{ github.workspace }}/openapi-owasp.json
       
-      - name: Start HTTP server
-        run: |
-          python -m http.server &
-          sleep 2 # give the server some time to start
+      # - name: Start HTTP server
+      #   run: |
+      #     python -m http.server &
+      #     sleep 2 # give the server some time to start
 
       - name: ZAP Scan
         uses: zaproxy/action-api-scan@v0.6.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           format: openapi
-          target: http://localhost:8000/openapi-owasp.json
+          target: "https://apim-api-security.azure-api.net/func-api-security"
         env:
           ZAP_AUTH_HEADER: "Ocp-Apim-Subscription-Key"
           ZAP_AUTH_HEADER_VALUE: "${{ secrets.APIM_SUBSCRIPTION_KEY }}"
