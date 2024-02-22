@@ -23,7 +23,7 @@ paths:
         '200':
           description: This returns the response
           content:
-            application/json:
+            text/json:
               schema:
                 $ref: '#/components/schemas/genericResponse'
           x-ms-summary: The response
