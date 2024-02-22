@@ -48,7 +48,7 @@ jobs:
       - name: 42crunch-dynamic-api-testing
         run: |
           docker pull 42crunch/scand-agent:v2
-          docker run -e SCAN_TOKEN=${{ secrets.CRUNCH42_SCAN_TOKEN }} -e SCAN42C_SECURITY_REGULARSECURITY=${{ secrets.APIM_SUBSCRIPTION_KEY }} 42crunch/scand-agent:v2
+          docker run -e SCAN_TOKEN=${{ secrets.CRUNCH42_SCAN_TOKEN }} -e SCAN42C_SECURITY_REGULARSECURITY=${{ secrets.APIM_SUBSCRIPTION_KEY }} -e sampleId=1 42crunch/scand-agent:v2
 
 
       
