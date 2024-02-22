@@ -4,7 +4,7 @@ info:
   description: This is the OpenAPI Document on Azure Functions
   version: 1.0.0
 servers:
-  - url: https://apim-api-security.azure-api.net/func-api-security
+  - url: http://api-firewall.australiaeast.azurecontainer.io
 security:
   - regularSecurity: []
 
