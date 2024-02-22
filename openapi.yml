@@ -4,62 +4,65 @@ info:
   description: This is the OpenAPI Document on Azure Functions
   version: 1.0.0
 servers:
-  - url: api-firewall.australiaeast.azurecontainer.io
+  - url: http://api-firewall.australiaeast.azurecontainer.io
+    description: The firewall endpoint
+  - url: https://apim-api-security.azure-api.net/func-api-security
+    description: APIM endpoint
 security:
   - regularSecurity: []
 
 paths:
   /health:
     get:
-      # tags:
-      #   - health
-      # summary: health
-      # description: Gets the health of the api
+      tags:
+        - health
+      summary: health
+      description: Gets the health of the api
       operationId: health
       responses:
-         '200':
-           description: This returns the response
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: '#/components/schemas/genericResponse'
-      #     x-ms-summary: The response
-      #   '401':
-      #     description: No description
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: '#/components/schemas/genericResponse'
-      #   '403':
-      #     description: No description
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: '#/components/schemas/genericResponse'
-      #   '404':
-      #     description: No description
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: '#/components/schemas/genericResponse'
-      #   '406':
-      #     description: No description
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: '#/components/schemas/genericResponse'
-      #   '429':
-      #     description: No description
-      #     content:
-      #       application/json:
-      #         schema:
-      #           $ref: '#/components/schemas/genericResponse'
-      #   default:
-      #     description: unexpected error
-      #     content:
-      #       text/plain:
-      #         schema:
-      #           $ref: "#/components/schemas/error"
+        '200':
+          description: This returns the response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+          x-ms-summary: The response
+        '401':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '403':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '404':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '406':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '429':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        default:
+          description: unexpected error
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/error"
   '/sample/{id}':
     get:
       tags:
