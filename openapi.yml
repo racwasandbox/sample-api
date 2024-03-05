@@ -9,7 +9,7 @@ servers:
   - url: https://apim-api-security.azure-api.net/func-api-security
     description: APIM endpoint
 security:
-  - regularSecurity: []
+  - APIKeyAuth: []
 
 paths:
   # /health:
@@ -353,7 +353,7 @@ components:
           pattern: "[^A-Za-z0-9]+"
 
   securitySchemes:
-    regularSecurity:
+    APIKeyAuth:   
       type: apiKey
-      name: api_key
-      in: header
+      in: header   
+      name: Ocp-Apim-Subscription-Key 
