@@ -21,4 +21,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           format: openapi
-          target: "changemypayment.json"
+          target: "caravan.json"
