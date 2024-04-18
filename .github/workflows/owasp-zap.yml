@@ -21,7 +21,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           format: openapi
-          target: "EchoAPI.json"
+          target: "changemypayment.json"
         env:
-          ZAP_AUTH_HEADER: "Ocp-Apim-Subscription-Key"
-          ZAP_AUTH_HEADER_VALUE: "${{ secrets.APIM_SUBSCRIPTION_KEY }}"
+          # ZAP_AUTH_HEADER: "Ocp-Apim-Subscription-Key"
+          # ZAP_AUTH_HEADER_VALUE: "${{ secrets.APIM_SUBSCRIPTION_KEY }}"
