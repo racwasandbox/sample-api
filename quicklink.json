@@ -1,0 +1,31 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Quicklink API v1",
+        "description": "Quicklink API",
+        "version": "v1"
+    },
+    "servers": [
+        {
+            "url": "https://az-api-sit.ractest.com.au/quicklink/v1"
+        }
+    ],
+    "paths": {
+        "/proviso": {
+            "post": {
+                "summary": "Proviso",
+                "description": "Enable Proviso / bankstatements / Quicklink Integration",
+                "operationId": "proviso",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/xml": {}
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {}
+}

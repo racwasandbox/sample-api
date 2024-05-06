@@ -1,55 +1,55 @@
-name: "API Security"
+# name: "API Security"
 
-# follow standard Code Scanning triggers
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
+# # follow standard Code Scanning triggers
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+#   workflow_dispatch:
 
-env:
-  PLATFORM_URL: https://platform.42crunch.com
-  TARGET_URL: "https://apim-api-security.azure-api.net/func-api-security"
+# env:
+#   PLATFORM_URL: https://platform.42crunch.com
+#   TARGET_URL: "https://apim-api-security.azure-api.net/func-api-security"
 
-jobs:
-  run_42c_audit:
-    permissions:
-      contents: read 
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout repo
-        uses: actions/checkout@v3
+# jobs:
+#   run_42c_audit:
+#     permissions:
+#       contents: read 
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: checkout repo
+#         uses: actions/checkout@v3
         
-      - name: 42crunch-static-api-testing
-        uses: 42Crunch/api-security-audit-action@v3
-        with:
-          api-token: ${{ secrets.CRUNCH42_API_TOKEN }}
-          platform-url: ${{ env.PLATFORM_URL}}
-          default-collection-name: API-Security-POC
-          # Upload results to Github code scanning
-          upload-to-code-scanning: false
-          log-level: info
-          json-report: audit-action-report-${{ github.run_id }}
-          sarif-report: 42Crunch_AuditReport_${{ github.run_id }}.SARIF
+#       - name: 42crunch-static-api-testing
+#         uses: 42Crunch/api-security-audit-action@v3
+#         with:
+#           api-token: ${{ secrets.CRUNCH42_API_TOKEN }}
+#           platform-url: ${{ env.PLATFORM_URL}}
+#           default-collection-name: API-Security-POC
+#           # Upload results to Github code scanning
+#           upload-to-code-scanning: false
+#           log-level: info
+#           json-report: audit-action-report-${{ github.run_id }}
+#           sarif-report: 42Crunch_AuditReport_${{ github.run_id }}.SARIF
 
-      - name: save-audit-report
-        if: always()        
-        uses: actions/upload-artifact@v3
-        with:
-          name: auditaction-report-${{ github.run_id }}
-          path: audit-action-report-${{ github.run_id }}.json
-          if-no-files-found: error
+#       - name: save-audit-report
+#         if: always()        
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: auditaction-report-${{ github.run_id }}
+#           path: audit-action-report-${{ github.run_id }}.json
+#           if-no-files-found: error
 
-  run_42c_scan:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - name: 42crunch-dynamic-api-testing
-        run: |
-          docker pull 42crunch/scand-agent:v2
-          docker run -e SCAN_TOKEN=${{ secrets.CRUNCH42_SCAN_TOKEN }} -e SCAN42C_SECURITY_APIKEYAUTH=${{ secrets.APIM_SUBSCRIPTION_KEY }} 42crunch/scand-agent:v2
+#   run_42c_scan:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: read
+#     steps:
+#       - name: 42crunch-dynamic-api-testing
+#         run: |
+#           docker pull 42crunch/scand-agent:v2
+#           docker run -e SCAN_TOKEN=${{ secrets.CRUNCH42_SCAN_TOKEN }} -e SCAN42C_SECURITY_APIKEYAUTH=${{ secrets.APIM_SUBSCRIPTION_KEY }} 42crunch/scand-agent:v2
 
 
       

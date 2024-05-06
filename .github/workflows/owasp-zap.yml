@@ -21,7 +21,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           format: openapi
-          target: "EchoAPI.json"
-        env:
-          ZAP_AUTH_HEADER: "Ocp-Apim-Subscription-Key"
-          ZAP_AUTH_HEADER_VALUE: "${{ secrets.APIM_SUBSCRIPTION_KEY }}"
+          target: "quicklink.json"
