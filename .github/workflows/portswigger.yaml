@@ -1,0 +1,22 @@
+name: "PortSwigger Burp Suite"
+
+# follow standard Code Scanning triggers
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: ZAP scans
+    steps:
+
+      - name: Run CI-driven scan Action Step
+        uses: PortSwigger/ci-driven-scan-github-action@main
+        with:
+          enterprise-server-url: "https://fa8630ad.portswigger.cloud"
+          enterprise-api-key: ${{ secrets.PORTSWIGGER_KEY }}
+          start-url: ${{ github.workspace }}/openapi.yml
