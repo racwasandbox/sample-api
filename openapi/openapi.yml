@@ -61,6 +61,45 @@ paths:
             text/plain:
               schema:
                 $ref: "#/components/schemas/error"
+  '/sample/{id}':
+    get:
+      tags:
+        - get
+      summary: get
+      description: get
+      operationId: get
+      parameters:
+        - name: id
+          in: path
+          description: The id of the item
+          required: true
+          schema:
+            $ref: '#/components/schemas/id'
+      responses:
+        '200':
+          description: This returns the response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/item'
+          x-ms-summary: The response
+        '401':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '403':
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genericResponse'
+        '404':
+          description: No description
+          content:
+            application/json:
+  #             schema:
 components:
   schemas:
     id:
