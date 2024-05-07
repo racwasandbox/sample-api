@@ -19,4 +19,6 @@ jobs:
         with:
           enterprise-server-url: "https://fa8630ad.portswigger.cloud"
           enterprise-api-key: ${{ secrets.PORTSWIGGER_KEY }}
-          start-url: https://ginandjuice.shop
+          start-url: https://racwasandbox.github.io/sample-api/openapi.yml
+          correlation-id: Sample API
+
