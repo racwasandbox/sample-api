@@ -1,0 +1,5 @@
+# audit:
+#     branches:
+#       main:
+#         mapping:
+#           swagger.json: 8eaedbfe-3965-4a99-8d71-b6bd80aa9fec

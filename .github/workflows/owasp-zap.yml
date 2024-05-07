@@ -1,24 +1,24 @@
-name: "OWASP ZAP"
+# name: "OWASP ZAP"
 
-# follow standard Code Scanning triggers
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
+# # follow standard Code Scanning triggers
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+#   workflow_dispatch:
 
-jobs:
-  zap_scan:
-    runs-on: ubuntu-latest
-    name: ZAP scans
-    steps:
-      - name: checkout repo
-        uses: actions/checkout@v3
+# jobs:
+#   zap_scan:
+#     runs-on: ubuntu-latest
+#     name: ZAP scans
+#     steps:
+#       - name: checkout repo
+#         uses: actions/checkout@v3
 
-      - name: ZAP API Scan 
-        uses: zaproxy/action-api-scan@v0.6.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          format: openapi
-          target: "quicklink.json"
+#       - name: ZAP API Scan 
+#         uses: zaproxy/action-api-scan@v0.6.0
+#         with:
+#           token: ${{ secrets.GITHUB_TOKEN }}
+#           format: openapi
+#           target: "quicklink.json"
