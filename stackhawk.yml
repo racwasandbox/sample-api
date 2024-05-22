@@ -5,7 +5,7 @@ app:
   # -- The environment for the applicationId defined in the StackHawk platform. --
   env: Development # (required)
   # -- The url of your application to scan --
-  host: https://apim-api-security.azure-api.net/func-api-security # (required)
+  host:  https://apim-api-security.azure-api.net # (required)
   openApiConf:
     path: /EchoAPI.json
   authentication:
@@ -13,7 +13,7 @@ app:
       path: /echo/resource?param1=sample
       success: ".*200.*"
     tokenAuthorization:
-      value: ${apimKey}
+      value: ${APIM_SUBSCRIPTION_KEY}
       header: Ocp-Apim-Subscription-Key
       isJWT: false
     loggedInIndicator: ".*200.*"

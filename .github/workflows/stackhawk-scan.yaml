@@ -22,7 +22,7 @@ jobs:
       with:
         apiKey: ${{ secrets.HAWK_API_KEY }}
       env:
-        apimKey: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
+        APIM_SUBSCRIPTION_KEY: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
     
 
 
