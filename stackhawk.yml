@@ -13,9 +13,10 @@ app:
       path: /echo/resource?param1=sample
       success: ".*200.*"
     tokenAuthorization:
-      value: ${APIM_SUBSCRIPTION_KEY}
+      value: ${apiKey}
       header: Ocp-Apim-Subscription-Key
       isJWT: false
+      
     
 
 
