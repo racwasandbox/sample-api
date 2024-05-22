@@ -21,6 +21,8 @@ jobs:
       uses: stackhawk/hawkscan-action@v2.1.3
       with:
         apiKey: ${{ secrets.HAWK_API_KEY }}
+      env:
+        apimKey: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
     
 
 
