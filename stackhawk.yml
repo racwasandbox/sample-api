@@ -16,6 +16,8 @@ app:
       value: ${apimKey}
       header: Ocp-Apim-Subscription-Key
       isJWT: false
+    loggedInIndicator: ".*200.*"
+    loggedOutIndicator: ".*401.*"
       
     
 
