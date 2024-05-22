@@ -1,24 +1,24 @@
-name: "PortSwigger Burp Suite"
+# name: "PortSwigger Burp Suite"
 
-# follow standard Code Scanning triggers
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
+# # follow standard Code Scanning triggers
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+#   workflow_dispatch:
 
-jobs:
-  burp_scan:
-    runs-on: ubuntu-latest
-    name: Burp Scan
-    steps:
+# jobs:
+#   burp_scan:
+#     runs-on: ubuntu-latest
+#     name: Burp Scan
+#     steps:
 
-      - name: Run CI-driven scan Action Step
-        uses: PortSwigger/ci-driven-scan-github-action@main
-        with:
-          enterprise-server-url: "https://fa8630ad.portswigger.cloud"
-          enterprise-api-key: ${{ secrets.PORTSWIGGER_KEY }}
-          start-url: https://racwasandbox.github.io/sample-api/openapi.yml
-          correlation-id: Sample API
+#       - name: Run CI-driven scan Action Step
+#         uses: PortSwigger/ci-driven-scan-github-action@main
+#         with:
+#           enterprise-server-url: "https://fa8630ad.portswigger.cloud"
+#           enterprise-api-key: ${{ secrets.PORTSWIGGER_KEY }}
+#           start-url: https://racwasandbox.github.io/sample-api/openapi.yml
+#           correlation-id: Sample API
 
