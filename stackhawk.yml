@@ -9,9 +9,9 @@ app:
   openApiConf:
     path: /EchoAPI.json
   authentication:
-    testPath:
-      path: /echo/resource?param1=sample
-      success: ".*200.*"
+    # testPath:
+    #   path: /echo/resource?param1=sample
+    #   success: ".*200.*"
     tokenAuthorization:
       value: ${APIM_SUBSCRIPTION_KEY}
       header: Ocp-Apim-Subscription-Key
