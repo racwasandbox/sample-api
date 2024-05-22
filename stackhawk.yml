@@ -5,7 +5,7 @@ app:
   # -- The environment for the applicationId defined in the StackHawk platform. --
   env: Development # (required)
   # -- The url of your application to scan --
-  host: http://example-path # (required)
+  host: https://apim-api-security.azure-api.net/func-api-security # (required)
 
 
 # -- Customized Configuration for GraphQL/SOAP/OpenAPI, add here --
