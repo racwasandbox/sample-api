@@ -1,7 +1,7 @@
 # -- stackhawk configuration for Sample API --
 app:
   # -- An applicationId obtained from the StackHawk platform. --
-  applicationId: e5227845-c52f-4f87-aeb1-f8d9c4d6ecaa # (required)
+  applicationId: 701c8701-ab45-4db7-8de7-b415e4aa79d0 # (required)
   # -- The environment for the applicationId defined in the StackHawk platform. --
   env: ${ENVIRONMENT}
   # -- The url of your application to scan --
