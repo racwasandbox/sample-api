@@ -3,9 +3,9 @@ name: "Stackhawk scan"
 # follow standard Code Scanning triggers
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:
@@ -13,29 +13,23 @@ jobs:
     runs-on: ubuntu-latest
     name: Stackhawk Scan
     steps:
-        
-    - name: Check out repo
-      uses: actions/checkout@v3
+      - name: Check out repo
+        uses: actions/checkout@v3
 
-    - name: Scan DEV
-      uses: stackhawk/hawkscan-action@v2.1.3
-      with:
-        apiKey: ${{ secrets.HAWK_API_KEY }}
-      env:
-        APIM_SUBSCRIPTION_KEY: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
-        ENVIRONMENT: "dev"
-        OAS_FILE_PATH: ${{ github.workspace }}/EchoAPI.json
+      - name: Scan DEV
+        uses: stackhawk/hawkscan-action@v2.1.3
+        with:
+          apiKey: ${{ secrets.HAWK_API_KEY }}
+        env:
+          APIM_SUBSCRIPTION_KEY: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
+          ENVIRONMENT: "dev"
+          OAS_FILE_PATH: ${{ github.workspace }}/openapi.yml
 
-    - name: Scan PRD
-      uses: stackhawk/hawkscan-action@v2.1.3
-      with:
-        apiKey: ${{ secrets.HAWK_API_KEY }}
-      env:
-        APIM_SUBSCRIPTION_KEY: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
-        ENVIRONMENT: "prd"
-        OAS_FILE_PATH: ${{ github.workspace }}/EchoAPI.json
-    
-
-
-     
-
+      - name: Scan PRD
+        uses: stackhawk/hawkscan-action@v2.1.3
+        with:
+          apiKey: ${{ secrets.HAWK_API_KEY }}
+        env:
+          APIM_SUBSCRIPTION_KEY: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
+          ENVIRONMENT: "prd"
+          OAS_FILE_PATH: ${{ github.workspace }}/openapi.yml

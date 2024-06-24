@@ -10,7 +10,7 @@ app:
     filePath: openapi.yml
   authentication:
     testPath:
-      path: /health
+      path: /func-api-security/health
       success: ".*200.*"
       requestHeaders:
         Ocp-Apim-Subscription-Key: ${APIM_SUBSCRIPTION_KEY}
