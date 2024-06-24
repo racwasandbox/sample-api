@@ -16,6 +16,10 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v3
 
+      - name: Install dependencies
+        run: dotnet restore
+        working-directory: src
+
       - name: Build
         run: dotnet build SampleApi.csproj --configuration Release --no-restore --output ./out
         working-directory: src
