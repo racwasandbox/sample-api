@@ -6,8 +6,10 @@ info:
 servers:
   # - url: http://api-firewall.australiaeast.azurecontainer.io
   #   description: The firewall endpoint
-  - url: https://apim-api-security.azure-api.net/func-api-security
-    description: APIM endpoint
+  # - url: https://apim-api-security.azure-api.net/func-api-security
+  #   description: APIM endpoint
+  - url: https://bt-stackhawk-demo-fa.azurewebsites.net
+    description: API
 security:
   - APIKeyAuth: []
 
