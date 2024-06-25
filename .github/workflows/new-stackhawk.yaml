@@ -34,7 +34,7 @@ jobs:
           subscription-id: cefaa5b6-8ccc-4b55-a658-549534c096c4
           tenant-id: 56219acc-ec33-4d2d-8f0e-76156d8e8010
       
-      - name: 🚀 Deploy Azure Function App
+      - name: 🚀 Deploy Azure Function App DEV
         uses: Azure/functions-action@v1
         with:
           app-name: 'bt-stackhawk-demo-fa'
@@ -49,3 +49,10 @@ jobs:
           FUNCTION_KEY: ${{ secrets.FUNCTION_KEY }}
           ENVIRONMENT: "dev"
           OAS_FILE_PATH: ${{ github.workspace }}/openapi.yml
+      
+      #- name: 🚀 Deploy Azure Function App PROD
+      #  uses: Azure/functions-action@v1
+      #  with:
+      #    app-name: 'bt-stackhawk-demo-fa'
+      #    package: '${{ github.workspace }}/out'
+      #    respect-funcignore: true
