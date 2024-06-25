@@ -46,6 +46,6 @@ jobs:
         with:
           apiKey: ${{ secrets.HAWK_API_KEY }}
         env:
-          FUNCTION_KEY&: ${{ secrets.APIM_SUBSCRIPTION_KEY }}
+          FUNCTION_KEY: ${{ secrets.FUNCTION_KEY }}
           ENVIRONMENT: "dev"
           OAS_FILE_PATH: ${{ github.workspace }}/openapi.yml
