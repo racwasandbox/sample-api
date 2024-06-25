@@ -131,7 +131,7 @@ public class SampleApi
     }
 
 
-    [Function("SampleDelete")]
+    [Function("SampleGetData")]
     public HttpResponseData GetData([HttpTrigger(AuthorizationLevel.Anonymous, "getdata", Route = "sample/{id}")] HttpRequestData req, int id)
     {
         ValidateId(id);
