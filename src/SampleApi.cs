@@ -131,18 +131,18 @@ public class SampleApi
     }
 
 
-    // [Function("SampleDelete")]
-    // public HttpResponseData GetData([HttpTrigger(AuthorizationLevel.Anonymous, "getdata", Route = "sample/{id}")] HttpRequestData req, int id)
-    // {
-    //     ValidateId(id);
-    //     var item = _service.Get(id);
+    [Function("SampleGetData")]
+    public HttpResponseData GetData([HttpTrigger(AuthorizationLevel.Anonymous, "getdata", Route = "sample/{id}")] HttpRequestData req, int id)
+    {
+        ValidateId(id);
+        var item = _service.Get(id);
 
-    //     var response = req.CreateResponse(HttpStatusCode.OK);
-    //     response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-    //     response.WriteString(JsonSerializer.Serialize(item));
+        var response = req.CreateResponse(HttpStatusCode.OK);
+        response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+        response.WriteString(JsonSerializer.Serialize(item));
 
-    //     return response;
-    // }
+        return response;
+    }
 
     private void ValidateId(int id)
     {
