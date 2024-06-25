@@ -6,64 +6,66 @@ info:
 servers:
   # - url: http://api-firewall.australiaeast.azurecontainer.io
   #   description: The firewall endpoint
-  - url: https://apim-api-security.azure-api.net/func-api-security
-    description: APIM endpoint
+  # - url: https://apim-api-security.azure-api.net/func-api-security
+  #   description: APIM endpoint
+  - url: https://bt-stackhawk-demo-fa.azurewebsites.net
+    description: API
 security:
   - APIKeyAuth: []
 
 paths:
-  # /health:
-  #   get:
-  #     tags:
-  #       - health
-  #     summary: health
-  #     description: Gets the health of the api
-  #     operationId: health
-  #     responses:
-  #       '200':
-  #         description: This returns the response
-  #         content:
-  #           text/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #         x-ms-summary: The response
-  #       '401':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '403':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '404':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '406':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '429':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       default:
-  #         description: unexpected error
-  #         content:
-  #           text/plain:
-  #             schema:
-  #               $ref: "#/components/schemas/error"
-  '/sample/{id}':
+  /health:
+    get:
+      tags:
+        - health
+      summary: health
+      description: Gets the health of the api
+      operationId: health
+      responses:
+        "200":
+          description: This returns the response
+          content:
+            text/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+          x-ms-summary: The response
+        "401":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "403":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "404":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "406":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "429":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        default:
+          description: unexpected error
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/error"
+  "/sample/{id}":
     get:
       tags:
         - get
@@ -76,238 +78,238 @@ paths:
           description: The id of the item
           required: true
           schema:
-            $ref: '#/components/schemas/id'
+            $ref: "#/components/schemas/id"
       responses:
-        '200':
+        "200":
           description: This returns the response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/item'
+                $ref: "#/components/schemas/item"
           x-ms-summary: The response
-        '401':
+        "401":
           description: No description
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericResponse'
-        '403':
+                $ref: "#/components/schemas/genericResponse"
+        "403":
           description: No description
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericResponse'
-        '404':
+                $ref: "#/components/schemas/genericResponse"
+        "404":
           description: No description
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericResponse'
-        '406':
+                $ref: "#/components/schemas/genericResponse"
+        "406":
           description: No description
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericResponse'
-        '429':
+                $ref: "#/components/schemas/genericResponse"
+        "429":
           description: No description
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/genericResponse'
+                $ref: "#/components/schemas/genericResponse"
         default:
           description: unexpected error
           content:
             text/plain:
               schema:
                 $ref: "#/components/schemas/error"
-  #   patch:
-  #     tags:
-  #       - patch
-  #     summary: patch
-  #     description: patch
-  #     operationId: patch
-  #     parameters:
-  #       - name: id
-  #         in: path
-  #         description: The id of the item
-  #         required: true
-  #         schema:
-  #           $ref: '#/components/schemas/id'
-  #     requestBody:
-  #       description: The text to update the item with
-  #       content:
-  #         text/plain:
-  #           schema:
-  #             $ref: '#/components/schemas/message'
-  #     responses:
-  #       '200':
-  #         description: This returns the response
-  #         content:
-  #           text/plain:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '401':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '403':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '404':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '406':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '415':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '429':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       default:
-  #         description: unexpected error
-  #         content:
-  #           text/plain:
-  #             schema:
-  #               $ref: "#/components/schemas/error"
-  #   delete:
-  #     tags:
-  #       - delete
-  #     summary: delete
-  #     description: delete
-  #     operationId: delete
-  #     parameters:
-  #       - name: id
-  #         in: path
-  #         description: The id of the item
-  #         required: true
-  #         schema:
-  #           $ref: '#/components/schemas/id'
-  #     responses:
-  #       '200':
-  #         description: This returns the response
-  #         content:
-  #           text/plain:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '401':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '403':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '404':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '406':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '429':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       default:
-  #         description: unexpected error
-  #         content:
-  #           text/plain:
-  #             schema:
-  #               $ref: "#/components/schemas/error"
-  # /sample:
-  #   post:
-  #     tags:
-  #       - post
-  #     summary: post
-  #     description: post
-  #     operationId: post
-  #     requestBody:
-  #       description: The text to update the item with
-  #       content:
-  #         text/plain:
-  #           schema:
-  #             $ref: '#/components/schemas/message'
-  #     responses:
-  #       '200':
-  #         description: This returns the response
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #         x-ms-summary: The response
-  #       '401':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '403':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '404':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '406':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '415':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       '429':
-  #         description: No description
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/genericResponse'
-  #       default:
-  #         description: unexpected error
-  #         content:
-  #           text/plain:
-  #             schema:
-  #               $ref: "#/components/schemas/error"
+    patch:
+      tags:
+        - patch
+      summary: patch
+      description: patch
+      operationId: patch
+      parameters:
+        - name: id
+          in: path
+          description: The id of the item
+          required: true
+          schema:
+            $ref: "#/components/schemas/id"
+      requestBody:
+        description: The text to update the item with
+        content:
+          text/plain:
+            schema:
+              $ref: "#/components/schemas/message"
+      responses:
+        "200":
+          description: This returns the response
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "401":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "403":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "404":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "406":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "415":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "429":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        default:
+          description: unexpected error
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/error"
+    delete:
+      tags:
+        - delete
+      summary: delete
+      description: delete
+      operationId: delete
+      parameters:
+        - name: id
+          in: path
+          description: The id of the item
+          required: true
+          schema:
+            $ref: "#/components/schemas/id"
+      responses:
+        "200":
+          description: This returns the response
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "401":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "403":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "404":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "406":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "429":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        default:
+          description: unexpected error
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/error"
+  /sample:
+    post:
+      tags:
+        - post
+      summary: post
+      description: post
+      operationId: post
+      requestBody:
+        description: The text to update the item with
+        content:
+          text/plain:
+            schema:
+              $ref: "#/components/schemas/message"
+      responses:
+        "200":
+          description: This returns the response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+          x-ms-summary: The response
+        "401":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "403":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "404":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "406":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "415":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        "429":
+          description: No description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/genericResponse"
+        default:
+          description: unexpected error
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/error"
 
 components:
   schemas:
@@ -353,7 +355,7 @@ components:
           pattern: "[^A-Za-z0-9]+"
 
   securitySchemes:
-    APIKeyAuth:   
+    APIKeyAuth:
       type: apiKey
-      in: header   
-      name: Ocp-Apim-Subscription-Key 
+      in: header
+      name: Ocp-Apim-Subscription-Key

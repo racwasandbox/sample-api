@@ -1,0 +1,51 @@
+name: "Stackhawk scan pre deploy"
+
+# follow standard Code Scanning triggers
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions: 
+  id-token: write
+
+jobs:
+  stackhawk_scan:
+    runs-on: ubuntu-latest
+    name: Stackhawk Scan
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: dotnet restore
+        working-directory: src
+
+      - name: Build
+        run: dotnet build SampleApi.csproj --configuration Release --no-restore --output ${{ github.workspace }}/out
+        working-directory: src
+
+      - name: Azure Login
+        uses: Azure/login@v1
+        with:
+          client-id: 8ae1c65e-61f0-4865-9ee5-4d6c9ac4dabb
+          subscription-id: cefaa5b6-8ccc-4b55-a658-549534c096c4
+          tenant-id: 56219acc-ec33-4d2d-8f0e-76156d8e8010
+      
+      - name: 🚀 Deploy Azure Function App
+        uses: Azure/functions-action@v1
+        with:
+          app-name: 'bt-stackhawk-demo-fa'
+          package: '${{ github.workspace }}/out'
+          respect-funcignore: true
+
+      - name: Scan DEV
+        uses: stackhawk/hawkscan-action@v2.1.3
+        with:
+          apiKey: ${{ secrets.HAWK_API_KEY }}
+        env:
+          FUNCTION_KEY: ${{ secrets.FUNCTION_KEY }}
+          ENVIRONMENT: "dev"
+          OAS_FILE_PATH: ${{ github.workspace }}/openapi.yml
