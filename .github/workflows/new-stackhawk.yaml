@@ -24,7 +24,7 @@ jobs:
         working-directory: src
 
       - name: Build
-        run: dotnet build SampleApi.csproj --configuration Release --no-restore --output ./out
+        run: dotnet build SampleApi.csproj --configuration Release --no-restore --output ${{ github.workspace }}/out
         working-directory: src
 
       - name: Azure Login
@@ -38,7 +38,7 @@ jobs:
         uses: Azure/functions-action@v1
         with:
           app-name: 'bt-stackhawk-demo-fa'
-          package: './out'
+          package: '${{ github.workspace }}/out'
           respect-funcignore: true
 
       - name: Scan DEV
